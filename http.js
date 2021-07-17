@@ -47,6 +47,20 @@ server.on('request',function(request,response){
     // response.write('hollo');
     // response.write('node.js');
     // response.end();
+    //告诉浏览器解析格式，解决中文乱码问题
+    // response.setHeader('Content-Type','text/plain;charset=utf-8')
+    // response.end('hollo world,世界');
+    var url = request.url;
+    if(url==='/plain'){
+        // text/plain普通文本
+        response.setHeader('Content-Type','text/plain;charset=utf-8')
+        response.end('hollo world,世界');
+    }else if(url==='/html'){
+        // text/html html文本
+        response.setHeader('Content-Type','text/html;charset=utf-8')
+        response.end('<p>hollo world,世界</p>');
+
+    }
 
     // response.end('hollo world');
 })
